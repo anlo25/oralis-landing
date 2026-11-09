@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>¡Cupo reservado! | Oralis</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<!-- Configuración: usa el MISMO GTM_ID que en index.html -->
+<script>
+window.ORALIS_CONFIG = {
+  GTM_ID: 'GTM-XXXXXXX',                       // Reemplaza por tu ID de Google Tag Manager
+  CALENDLY_URL: 'https://calendly.com/'        // Reemplaza por tu enlace real de Calendly
+};
+</script>
+
+<!-- Google Tag Manager: solo se carga si GTM_ID es real -->
+<script>
+(function () {
+  var id = window.ORALIS_CONFIG.GTM_ID;
+  window.dataLayer = window.dataLayer || [];
+  // Evento de la página de gracias: en GTM úsalo (o la ruta /thank-you.html) para disparar el Pixel "Lead"
+  window.dataLayer.push({ event: 'thank_you_view' });
+  if (!id || id.indexOf('XXXX') !== -1) { return; }
+  (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});
+  var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+  j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer',id);
+})();
+</script>
+
+<style>
+:root{--navy:#0F2C59;--accent:#00BFA5;--ink2:#2C3E63;--muted:#526173;--line:#E2E8F0}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px;background:linear-gradient(180deg,#E8F1F8 0%,#F8FAFC 100%);color:var(--navy);font-family:Manrope,system-ui,sans-serif}
+.box{width:100%;max-width:520px;background:#fff;border:1px solid var(--line);border-radius:22px;padding:36px 28px;text-align:center;box-shadow:0 24px 50px -24px rgba(15,44,89,.35)}
+.ok{width:68px;height:68px;border-radius:50%;background:var(--accent);display:inline-flex;align-items:center;justify-content:center;color:var(--navy)}
+h1{margin:20px 0 12px;font-size:28px;line-height:1.2;font-weight:800;letter-spacing:-.01em}
+p{margin:0 0 22px;font-size:17px;line-height:1.55;color:var(--ink2)}
+.btn{display:flex;align-items:center;justify-content:center;min-height:58px;padding:0 20px;border-radius:14px;background:var(--accent);color:var(--navy);font-size:17px;font-weight:800;text-decoration:none}
+.btn:hover{filter:brightness(.93)}
+.sec{display:inline-flex;align-items:center;min-height:44px;margin-top:12px;font-size:15px;font-weight:700;color:var(--navy)}
+:focus-visible{outline:3px solid var(--navy);outline-offset:2px}
+</style>
+</head>
+<body>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX" height="0" width="0" style="display:none;visibility:hidden" title="gtm"></iframe></noscript>
+<main class="box" role="status">
+  <span class="ok"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>
+  <h1 id="titulo">¡Listo! Tu cupo quedó reservado</h1>
+  <p>Te confirmamos por WhatsApp en menos de 15 minutos, en horario de atención. Mientras tanto, puedes elegir la hora exacta de tu valoración.</p>
+  <a class="btn" id="calendly" href="https://calendly.com/" target="_blank" rel="noopener">Elegir hora exacta en Calendly</a>
+  <a class="sec" href="index.html">Volver al inicio</a>
+  <p style="margin:18px 0 0;font-size:12px;color:var(--muted)">Página de práctica: la marca y los datos son ficticios.</p>
+</main>
+<script>
+(function () {
+  var n = new URLSearchParams(location.search).get('n');
+  if (n) {
+    // textContent evita inyección de HTML desde la URL
+    document.getElementById('titulo').textContent = '¡Listo, ' + n.slice(0, 30) + '! Tu cupo quedó reservado';
+  }
+  var url = (window.ORALIS_CONFIG || {}).CALENDLY_URL;
+  if (url) { document.getElementById('calendly').href = url; }
+})();
+</script>
+</body>
+</html>
